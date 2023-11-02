@@ -3,12 +3,7 @@
 This is naresh.
 [Hosted Render Server Link](https://f23wb13chityala.onrender.com)
 
-[Render Dashboard Link](https://dashboard.render.com/)
-
-
-[Render Cereal Link](https://f23wb13chityala.onrender.com/cereal)
-
-
+[Github URL](https://github.com/Chityala201/f23wb13chityala/)
 
 ```
 class Cereal {
