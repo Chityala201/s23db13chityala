@@ -7,6 +7,7 @@ block content
   button(type="button", class="btn btn-primary" onclick="goFaster()") press me
 
   div#faster Increase the speed 
+  a(href="/Cereal") Click here to go to Cereal food 
  
   script.
     let mph = 20;
@@ -15,6 +16,6 @@ block content
       mph += change;
 
       change += 1;
-      
+
       document.getElementById('faster').textContent = `MPH ${mph} with change ${change}`; 
     }
