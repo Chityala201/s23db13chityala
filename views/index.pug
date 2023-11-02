@@ -4,4 +4,17 @@ block content
   h1= Asssignment 
   p Welcome to #{title}
   p Naresh is a goal oriented person.
-  button(type="button", class="btn btn-primary") press me
+  button(type="button", class="btn btn-primary" onclick="goFaster()") press me
+
+  div#faster Increase the speed 
+ 
+  script.
+    let mph = 20;
+    let change = 1;
+    function goFaster() {
+      mph += change;
+
+      change += 1;
+      
+      document.getElementById('faster').textContent = `MPH ${mph} with change ${change}`; 
+    }
