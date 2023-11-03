@@ -1,9 +1,9 @@
 # f23wb13chityala
 
 This is naresh.
-[Hosted Render Server Link](https://f23wb13chityala.onrender.com)
+[Hosted Render Server Link](https://s23db13chityala.onrender.com)
 
-[Github URL](https://github.com/Chityala201/f23wb13chityala/)
+[Github URL](https://github.com/Chityala201/s23db13chityala/)
 
 ```
 class Cereal {
