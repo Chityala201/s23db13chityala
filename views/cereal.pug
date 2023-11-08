@@ -2,16 +2,7 @@ extends layout
 
 block content
   h1= title
-  - var result = [{"cerealBrandName":"Kellogg's","cerealFlavor":"Blue Berries","price":5.8},{"cerealBrandName":"Special K","cerealFlavor":"Fruit","price":4.99},{"cerealBrandName":"Post Great","cerealFlavor":"Dates","price":6.2}]
-  br
-  div.container-fluid
-     div.row
-        each item,index in result
-            div.col-sm-2(onclick=`buy(${index})`) Cereal Brand: #{item["cerealBrandName"]}  <br>  Cereal Flavor: #{item["cerealFlavor"]} <br> Price: #{item["price"]} 
-  script.
-      function buy(i){
-         alert("you purchased item "+(i+1))
-      }
-
-
-
+  each cereal in results
+    .cereal
+      h2= cereal.cerealBrandName
+      p Flavour is: #{cereal.cerealFlavor}, Cost is: #{cereal.price}
