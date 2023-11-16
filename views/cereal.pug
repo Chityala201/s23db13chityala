@@ -2,7 +2,15 @@ extends layout
 
 block content
   h1= title
-  each cereal in results
-    .cereal
-      h2= cereal.cerealBrandName
-      p Flavour is: #{cereal.cerealFlavor}, Cost is: #{cereal.price}
+  .container-fluid
+    .row
+      - const result = results
+      each item, index in result
+        .col-sm-2(onclick=`buy(${index})`)
+          h5.card-title #{item.cerealBrandName}
+          p.card-text   #{item.cerealFlavor}
+          p.card-text   #{item.price}
+  script.
+    function buy(index) {
+      alert(`You purchased item at index: ${index}`);
+    }

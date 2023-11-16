@@ -24,7 +24,7 @@ var cerealRouter = require('./routes/cereal');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
 var resourceRouter = require('./routes/resource');
-var costumeRouter = require('./routes/costumes');
+var cerealRouter = require('./routes/cereal');
 
 var app = express();
 
@@ -40,11 +40,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/cereal', cerealRouter);
+// app.use('/cereal', cerealRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
 app.use('/resource', resourceRouter);
-app.use('/costumes' , costumeRouter);
+app.use('/cereal' , cerealRouter);
 
 // We can seed the collection if needed on
 

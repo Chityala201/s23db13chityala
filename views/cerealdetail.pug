@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  h1= title
+
+  - let cerealid = toShow._id
+  - let cerealBrandName = toShow.cerealBrandName
+  - let cerealFlavor = toShow.cerealFlavor
+  - let price = toShow.price
+
+  div
+    div.row
+      div(class='cerealAttr mr-3') Cereal ID is:
+        div #{cerealid}
+    div.row
+      div(class='cerealAttr mr-3') Cereal BrandName is:
+        div #{cerealBrandName}
+    div.row
+      div(class='cerealAttr mr-3') Cereal Flavour is:
+        div #{cerealFlavor}
+    div.row
+      div(class='cerealAttr mr-3') Cereal Price:
+        div #{price}
