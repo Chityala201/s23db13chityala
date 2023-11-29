@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  h1.text-primary= title
+
+  if (toShow == null)
+    h2.text-danger No instance to update
+  else
+    - let id = toShow._id
+    - let cerealBrandName = toShow.cerealBrandName
+    - let cerealFlavor = toShow.cerealFlavor
+    - let price = toShow.price
+
+    div.row.mb-2
+      div.mr-1.text-info ID is
+        div.text-success #{id}
+
+    - let actionid = "/resource/cereal/" + id
+    form#CerealForm(class='mt-3', action=actionid, method="PUT")
+      div.form-group
+        label.cerealAttr(for='cereal_type', class='text-info') Cereal BrandName
+        input#cerealBrandName.form-control(type='text', name='cerealBrandName', value=cerealBrandName)
+      div.form-group
+        label.cerealAttr(for='cerealFlavor', class='text-info') Cereal Flavor
+        input#cerealFlavor.form-control(type='text', min = 5, max = 20, name='cerealFlavor', value=cerealFlavor)
+      div.form-group
+        label.cerealAttr(for='price', class='text-info') Cereal Price
+        input#price.form-control(type='number', min = 1, max = 10, name='price', value=price)
+      input.btn.btn-primary(type="submit" value="Update")
+
+    script.
+      document.forms.CerealForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        try {
+          // TODO: Add loading spinner or other user feedback
+
+          const resp = await fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target))
+          });
+
+          if (!resp.ok) {
+            throw new Error('Network response was not ok');
+          }
+
+          // Attempt to parse the response as JSON
+          const body = await resp.json();
+          alert("Update succeeded");
+        } catch (error) {
+          alert("Update failed: " + error.message);
+        }
+      });

@@ -5,12 +5,21 @@ block content
   .container-fluid
     .row
       - const result = results
+      a.btn.btn-warning(href="/cereal/create") Create cereal
       each item, index in result
         .col-sm-2(onclick=`buy(${index})`)
           h5.card-title #{item.cerealBrandName}
           p.card-text   #{item.cerealFlavor}
           p.card-text   #{item.price}
+ 
+          - let destination = `dispatch(\"/cereal/update?id=${item._id}\")`
+          button.btn(class="btn-primary ml-1", onclick=destination) Update
+          button.btn(class="btn-success ml-1", onclick=destination) View Details
   script.
     function buy(index) {
       alert(`You purchased item at index: ${index}`);
+    }
+
+    function dispatch(path){
+      window.location.href = path;
     }

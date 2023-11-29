@@ -31,7 +31,8 @@ exports.cereal_list = async function(req, res) {
 exports.cereal_view_all_Page = async function(req, res) {
     try{
     thecereal = await cereals.find();
-    res.render('cereal', { title: 'cereal Search Results', results: thecereals });
+    console.log(thecereal)
+    res.render('cereal', { title: 'cereal Search Results', results: thecereal });
     }
     catch(err){
     res.status(500);
@@ -120,6 +121,61 @@ exports.cereal_view_one_Page = async function(req, res) {
     }};
  
 
-
-
+    
+exports.cereal_create_Page = function (req, res) {
+  console.log("create view");
+  res.render('cerealcreate', { title: 'Cereal Create' });
+};
  
+exports.cereal_create = async function (req, res) {
+  try {
+    const { cerealBrandName, cerealFlavor, price } = req.body;
+ 
+    const cereal = new Cereal({
+      cerealBrandName,
+      cerealFlavor,
+      price,
+    });
+ 
+    // Save the document to the database
+    await cereal.save();
+ 
+    res.status(201).json(cereal); // Respond with the created Aeroplane document
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+
+exports.cereal_update_Page = async function(req, res) {
+  console.log("update view for item " + req.query.id);
+  try {
+      let result = await cereals.findById(req.query.id);
+     
+      if (req.body.cerealBrandName) result.cerealBrandName = req.body.cerealBrandName;
+      if (req.body.cerealFlavor) result.cerealFlavor = req.body.cerealFlavor;
+      if (req.body.price) result.price = req.body.price;
+
+      // Save the updated aeroplane data
+      let updatedCereal = await result.save();
+      console.log("Update success: ", updatedCereal);
+      res.render('cerealupdate', { title: 'Cereal Update', toShow: updatedCereal });
+  } catch (err) {
+      res.status(500).send(`{'error': '${err}'}`);
+  }
+};
+ 
+
+
+exports.cereal_delete_Page = async function(req, res) {
+  console.log("Delete view for id " + req.query.id)
+  try{
+  result = await cereals.findById(req.query.id)
+  res.render('cerealdelete', { title: 'Cereals Delete', toShow:
+ result });
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+ };

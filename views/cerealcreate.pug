@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  head 
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  h1= title
+  form(id='CerealForm', action="/resource/cereal", method="POST")
+    div.form-group
+      label.cerealAttr(for='cereal_type') Cereal BrandName
+      input#cerealBrandName(type='text', name='cerealBrandName')
+    div.form-group
+      label.cerealAttr(for='cerealFlavor') Cereal Flavor
+      input#cerealFlavor(type='text', name='cerealFlavor')
+    div.form-group
+      label.cerealAttr(for='price') Cereal Price
+      input#price(type='number', name='price')
+    input(type="submit")
+  script.
+    document.forms['CerealForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        if (!resp.ok) {
+          throw new Error(`HTTP error! Status: ${resp.status}`);
+        }
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeeded");
+        console.log("Server Response:", body);
+
+        // TODO handle body
+      }).catch((error) => {
+        alert("Save failed: " + error);
+        // TODO handle error
+      });
+    });

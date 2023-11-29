@@ -10,16 +10,18 @@ block content
   - let cerealFlavor = toShow.cerealFlavor
   - let price = toShow.price
 
-  div
-    div.row
-      div(class='cerealAttr mr-3') Cereal ID is:
-        div #{cerealid}
-    div.row
-      div(class='cerealAttr mr-3') Cereal BrandName is:
-        div #{cerealBrandName}
-    div.row
-      div(class='cerealAttr mr-3') Cereal Flavour is:
-        div #{cerealFlavor}
-    div.row
-      div(class='cerealAttr mr-3') Cereal Price:
-        div #{price}
+  div.container
+    .card.mb-4
+      .card-body
+        div.row.mb-2
+          div.col.cerealAttr.mr-3.text-primary Cereal ID is:
+            div.text-success #{cerealid}
+        div.row.mb-2
+          div.col.cerealAttr.mr-3.text-primary Cereal BrandName is:
+            div.text-warning #{cerealBrandName}
+        div.row.mb-2
+          div.col.cerealAttr.mr-3.text-primary Cereal Flavour is:
+            div.text-danger #{cerealFlavor}
+        div.row.mb-2
+          div.col.cerealAttr.mr-3.text-primary Cereal Price:
+            div.text-success #{price}
